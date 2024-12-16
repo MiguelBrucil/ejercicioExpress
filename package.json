@@ -1,0 +1,22 @@
+{
+  "name": "ejercicioexpress",
+  "version": "1.0.0",
+  "description": "ejercicio con la libreria Express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MiguelBrucil/ejercicioExpress.git"
+  },
+  "author": "Miguel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MiguelBrucil/ejercicioExpress/issues"
+  },
+  "homepage": "https://github.com/MiguelBrucil/ejercicioExpress#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
