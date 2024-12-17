@@ -42,10 +42,13 @@ app.get('/sumar/:n1',(req, res)=>{
 
 app.get('/cuadrado/:n1', (req, res) => {
     const num1 = parseFloat(req.params.n1);
-    const perimetro = 4 * num1;
-    const area = num1 * num1; // Área: lado * lado
+    const perimetro = 4 * num1; // Perímetro del cuadrado: 4 * lado
+    const area = num1 * num1; // Área del cuadrado: lado * lado
     
+    // Enviar la respuesta
+    res.send('El perímetro del cuadrado es: ' + perimetro + ' y el área es: ' + area);
 });
+
 app.get('/pentagono/:lado/:apotema', (req, res) => {
     const lado = parseFloat(req.params.lado); // Lado del pentágono
     const apotema = parseFloat(req.params.apotema); // Apotema del pentágono
@@ -58,6 +61,19 @@ app.get('/pentagono/:lado/:apotema', (req, res) => {
 
     // Enviar la respuesta
     res.send('El perímetro del pentágono es: ' + perimetro + ' y el área es: ' + area);
+});
+app.get('/hexagono/:lado/:apotema', (req, res) => {
+    const lado = parseFloat(req.params.lado); // Lado del hexágono
+    const apotema = parseFloat(req.params.apotema); // Apotema del hexágono
+
+    // Calcular el perímetro: P = 6 * lado
+    const perimetro = 6 * lado;
+
+    // Calcular el área: A = (P * apotema) / 2
+    const area = (perimetro * apotema) / 2;
+
+    // Enviar la respuesta
+    res.send('El perímetro del hexágono es: ' + perimetro + ' y el área es: ' + area);
 });
 
 
