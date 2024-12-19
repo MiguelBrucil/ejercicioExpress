@@ -42,40 +42,49 @@ app.get('/sumar/:n1',(req, res)=>{
 
 app.get('/cuadrado/:n1', (req, res) => {
     const num1 = parseFloat(req.params.n1);
-    const perimetro = 4 * num1; // Perímetro del cuadrado: 4 * lado
-    const area = num1 * num1; // Área del cuadrado: lado * lado
+    const perimetro = 4 * num1; 
+    const area = num1 * num1; 
     
-    // Enviar la respuesta
     res.send('El perímetro del cuadrado es: ' + perimetro + ' y el área es: ' + area);
 });
 
 app.get('/pentagono/:lado/:apotema', (req, res) => {
-    const lado = parseFloat(req.params.lado); // Lado del pentágono
-    const apotema = parseFloat(req.params.apotema); // Apotema del pentágono
+    const lado = parseFloat(req.params.lado); 
+    const apotema = parseFloat(req.params.apotema); 
 
-    // Calcular el perímetro: P = 5 * lado
     const perimetro = 5 * lado;
 
-    // Calcular el área: A = (P * apotema) / 2
     const area = (perimetro * apotema) / 2;
 
-    // Enviar la respuesta
     res.send('El perímetro del pentágono es: ' + perimetro + ' y el área es: ' + area);
 });
 app.get('/hexagono/:lado/:apotema', (req, res) => {
-    const lado = parseFloat(req.params.lado); // Lado del hexágono
-    const apotema = parseFloat(req.params.apotema); // Apotema del hexágono
+    const lado = parseFloat(req.params.lado); 
+    const apotema = parseFloat(req.params.apotema); 
 
-    // Calcular el perímetro: P = 6 * lado
     const perimetro = 6 * lado;
 
-    // Calcular el área: A = (P * apotema) / 2
     const area = (perimetro * apotema) / 2;
-
-    // Enviar la respuesta
     res.send('El perímetro del hexágono es: ' + perimetro + ' y el área es: ' + area);
 });
 
+app.get('/trinomio/:a/:b/:c', (req, res) => {
+    // Obtener los parámetros de la URL
+    let a = parseInt(req.params.a); 
+    let b = parseInt(req.params.b); 
+    let c = parseInt(req.params.c);
+
+   
+    if (b * b === 4 * a * c) {
+       
+        let p = b / (2 * a);
+       
+        let factor = `(${a}x + ${p})²`;
+        res.send('Respuesta de un cuadrado perfecto: ' + factor);
+    } else {
+        res.send('El trinomio ' + a + 'x² + ' + b + 'x + ' + c + ' NO es un cuadrado perfecto.');
+    }
+});
 
 
 app.listen(3002,()=>{
