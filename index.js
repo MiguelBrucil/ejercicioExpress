@@ -70,36 +70,41 @@ app.get('/hexagono/:lado/:apotema', (req, res) => {
 
 app.get('/trinomio/:a/:b/:c', (req, res) => {
     // Obtener los parámetros de la URL
-    let a = parseInt(req.params.a); 
     let b = parseInt(req.params.b); 
     let c = parseInt(req.params.c);
+    let a = parseInt(req.params.a); 
 
-   
     if (b * b === 4 * a * c) {
-       
         let p = b / (2 * a);
-       
-        let factor = `(${a}x + ${p})²`;
+        // Construir el factor sin usar template literals
+        let factor = '(' + a + 'x + ' + p + ')²';
         res.send('Respuesta de un cuadrado perfecto: ' + factor);
     } else {
         res.send('El trinomio ' + a + 'x² + ' + b + 'x + ' + c + ' NO es un cuadrado perfecto.');
     }
 });
+
 app.get('/trinomioN/:a/:b/:c', (req, res) => {
     // Obtener los parámetros de la URL
     let a = parseInt(req.params.a); 
     let b = parseInt(req.params.b); 
     let c = parseInt(req.params.c);
 
-    // Verificar si es un cuadrado perfecto con b negativo predeterminado
-    if (b === -2 * Math.sqrt(a * c)) {
-        let p = Math.sqrt(c);
-        let factor = `(${a}x - ${p})²`;
+    // Calcular el valor de p
+    let p = b / (2 * a); 
+
+    // Verificar si c es igual a p^2 sin usar Math.pow
+    if (c === p * p) {
+        // Mostrar el factor sin usar Math.abs
+        let factor = '(x ' + (p < 0 ? '+ ' : '- ') + (p < 0 ? -p : p) + ')²';
         res.send('Respuesta de un cuadrado perfecto: ' + factor);
     } else {
-        res.send('El trinomio ' + a + 'x² ' + (b < 0 ? '- ' : '+ ') + Math.abs(b) + 'x + ' + c + ' NO es un cuadrado perfecto.');
+        // Construir la respuesta sin usar Math.abs para b
+        res.send('El trinomio ' + a + 'x² ' + (b < 0 ? '- ' : '+ ') + (b < 0 ? -b : b) + 'x + ' + c + ' NO es un cuadrado perfecto.');
     }
 });
+
+
 
 
 app.listen(3002,()=>{
