@@ -85,6 +85,21 @@ app.get('/trinomio/:a/:b/:c', (req, res) => {
         res.send('El trinomio ' + a + 'x² + ' + b + 'x + ' + c + ' NO es un cuadrado perfecto.');
     }
 });
+app.get('/trinomioN/:a/:b/:c', (req, res) => {
+    // Obtener los parámetros de la URL
+    let a = parseInt(req.params.a); 
+    let b = parseInt(req.params.b); 
+    let c = parseInt(req.params.c);
+
+    // Verificar si es un cuadrado perfecto con b negativo predeterminado
+    if (b === -2 * Math.sqrt(a * c)) {
+        let p = Math.sqrt(c);
+        let factor = `(${a}x - ${p})²`;
+        res.send('Respuesta de un cuadrado perfecto: ' + factor);
+    } else {
+        res.send('El trinomio ' + a + 'x² ' + (b < 0 ? '- ' : '+ ') + Math.abs(b) + 'x + ' + c + ' NO es un cuadrado perfecto.');
+    }
+});
 
 
 app.listen(3002,()=>{
